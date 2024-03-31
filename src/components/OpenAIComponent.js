@@ -87,7 +87,7 @@ const OpenAIComponent = () => {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
       <div className="bg-white p-5 rounded-lg border border-gray-300 w-full max-w-md">
         <div className="flex justify-between mb-6">
-          <h2 className="font-semibold text-lg tracking-tight">
+          <h2 className="font-semibold text-xl tracking-tight">
             GPT 3.5 based
           </h2>
           <p className="text-sm text-gray-600">
@@ -147,11 +147,14 @@ const OpenAIComponent = () => {
           <div ref={messagesEndRef} />
         </div>
 
-        <form className="flex justify-between" onSubmit={handleFormSubmit}>
+        <form
+          className="flex justify-between items-center bg-white-200 rounded-md p-2"
+          onSubmit={handleFormSubmit}
+        >
           <input
             type="text"
-            className="flex-1 h-10 border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Type your message"
+            className="flex-1 h-10 px-3 rounded-full border border-gray-300"
+            placeholder="Text Message"
             value={prompt}
             onChange={handlePromptChange}
             style={{ fontFamily: "Poppins" }}
@@ -159,7 +162,7 @@ const OpenAIComponent = () => {
           />
           <button
             type="submit"
-            className={`ml-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 flex items-center justify-center ${
+            className={`ml-2 px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 ${
               loading ? "cursor-not-allowed" : ""
             }`}
             style={{ fontFamily: "Poppins" }}
@@ -170,7 +173,7 @@ const OpenAIComponent = () => {
                 <svg
                   aria-hidden="true"
                   role="status"
-                  className="inline w-4 h-4 me-3 text-white animate-spin"
+                  className="inline w-4 h-4 me-1 text-white animate-spin"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -191,10 +194,11 @@ const OpenAIComponent = () => {
             )}
           </button>
         </form>
+
         {error && <p className="text-red-500 mt-4">{error}</p>}
         {response && (
           <div className="mt-4">
-            <h3 className="font-semibold text-lg">Generated Response:</h3>
+            <h3 className="font-semibold text-sm">Generated Response:</h3>
             <p className="text-gray-800">{response}</p>
           </div>
         )}

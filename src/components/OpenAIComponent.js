@@ -28,7 +28,7 @@ const OpenAIComponent = () => {
         ...prevMessages,
         { role: "user", content: prompt },
       ]);
-      const generatedResponse = await generateResponse(prompt);
+      const generatedResponse = await generateResponse(prompt, messages);
       setMessages((prevMessages) => [
         ...prevMessages,
         { role: "assistant", content: generatedResponse },
@@ -49,7 +49,7 @@ const OpenAIComponent = () => {
     setPrompt("");
   };
 
-  const generateResponse = async (prompt) => {
+  const generateResponse = async (prompt, previousMessages) => {
     try {
       const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
       const response = await axios.post(
@@ -58,6 +58,7 @@ const OpenAIComponent = () => {
           model: "gpt-3.5-turbo",
           max_tokens: 150,
           messages: [
+            ...previousMessages,
             {
               role: "user",
               content: prompt,
@@ -183,7 +184,7 @@ const OpenAIComponent = () => {
                     fill="currentColor"
                   />
                 </svg>
-                Loading
+                Thinking
               </>
             ) : (
               "Send"

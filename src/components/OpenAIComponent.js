@@ -106,7 +106,7 @@ const OpenAIComponent = () => {
             style={{ fontFamily: "Poppins" }}
           >
             Built by{" "}
-            <a href="https://twitter.com/99promitsaha">
+            <a href="https://twitter.com/99promitsaha" target="blank">
               <span className="underline text-blue-500">99promitsaha</span>
             </a>
           </p>

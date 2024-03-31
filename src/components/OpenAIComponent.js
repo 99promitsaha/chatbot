@@ -80,35 +80,68 @@ const OpenAIComponent = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
-      <div
-        className="bg-white p-5 rounded-lg border border-gray-300 w-full max-w-md"
-        style={{ fontFamily: "Poppins" }}
-      >
+      <div className="bg-white p-5 rounded-lg border border-gray-300 w-full max-w-md">
         <div className="flex justify-between mb-6">
-          <h2 className="font-semibold text-lg tracking-tight">Chatbot</h2>
-          <p className="text-sm text-gray-600">Built by 99promitsaha</p>
+          <h2 className="font-semibold text-lg tracking-tight">
+            GPT 3.5 based
+          </h2>
+          <p className="text-sm text-gray-600">
+            Built by{" "}
+            <a href="https://twitter.com/99promitsaha">
+              <span className="underline text-blue-500">99promitsaha</span>
+            </a>
+          </p>
+        </div>
+        {/* Initial message section */}
+        <div className="mb-6">
+          <p className="text-sm text-gray-600">
+            🔓 Messages are not end-to-end encrypted.
+          </p>
         </div>
         <div
           className="overflow-y-auto h-96 mb-6"
           style={{ maxHeight: "calc(100% - 200px)" }}
         >
+          {/* Chat messages */}
           {messages.map((msg, index) => (
-            <div key={index} className="flex gap-3 items-start">
-              {msg.role === "assistant" && <h1>ChatGPT: </h1>}
-              {msg.role === "user" && <h1>You: </h1>}
-              <div>
+            <div key={index} className="flex gap-3 items-start mb-4">
+              <div
+                className={`flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 rounded-e-xl rounded-es-xl dark:bg-gray-700 ${
+                  msg.role === "assistant" ? "bg-green-100" : "bg-gray-100"
+                } ${msg.role === "user" ? "ml-auto" : ""}`}
+              >
+                <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                  <span
+                    className={`text-sm font-semibold ${
+                      msg.role === "assistant"
+                        ? "text-green-900"
+                        : "text-gray-900"
+                    } dark:text-white`}
+                  >
+                    {msg.role === "assistant" ? "OpenAI" : "You"}
+                  </span>
+                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    {new Date().toLocaleDateString()}{" "}
+                  </span>
+                </div>
                 <p
-                  className={`text-base font-small mb-4 ${
-                    msg.role === "assistant" ? "text-gray-700" : "text-gray-600"
-                  }`}
+                  className={`text-sm font-normal py-2.5 ${
+                    msg.role === "assistant"
+                      ? "text-green-900"
+                      : "text-gray-800"
+                  } dark:text-white`}
                 >
                   {msg.content}
                 </p>
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Read
+                </span>
               </div>
             </div>
           ))}
           <div ref={messagesEndRef} />
         </div>
+
         <form className="flex justify-between" onSubmit={handleFormSubmit}>
           <input
             type="text"
@@ -122,9 +155,10 @@ const OpenAIComponent = () => {
             type="submit"
             className="ml-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
             style={{ fontFamily: "Poppins" }}
-            disabled={loading} // Disable button when loading
+            disabled={loading}
           >
-            {loading ? "Sending..." : "Send"} {/* Change button text based on loading state */}
+            {loading ? "Sending..." : "Send"}{" "}
+            {/* Change button text based on loading state */}
           </button>
         </form>
         {error && <p className="text-red-500 mt-4">{error}</p>}

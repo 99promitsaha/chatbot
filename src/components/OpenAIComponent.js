@@ -87,9 +87,7 @@ const OpenAIComponent = () => {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
       <div className="bg-white p-5 rounded-lg border border-gray-300 w-full max-w-md">
         <div className="flex justify-between mb-6">
-          <h2 className="font-semibold text-xl tracking-tight">
-            GPT 3.5 based
-          </h2>
+          <h2 className="font-semibold text-xl tracking-tight">ChaatGPT 🇮🇳</h2>
           <p className="text-sm text-gray-600">
             Built by{" "}
             <a href="https://twitter.com/99promitsaha">

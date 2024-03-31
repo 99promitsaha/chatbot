@@ -58,6 +58,10 @@ const OpenAIComponent = () => {
           model: "gpt-3.5-turbo",
           max_tokens: 150,
           messages: [
+            {
+              role: "system",
+              content: "Please respond in a sarcastic yet informative way! Add emoji's in your answer to make it more fun!",
+            },
             ...previousMessages,
             {
               role: "user",
@@ -87,8 +91,16 @@ const OpenAIComponent = () => {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
       <div className="bg-white p-5 rounded-lg border border-gray-300 w-full max-w-md">
         <div className="flex justify-between mb-6">
-          <h2 className="font-semibold text-xl tracking-tight">ChaatGPT 🇮🇳</h2>
-          <p className="text-sm text-gray-600">
+          <h2
+            className="font-semibold text-xl tracking-tight"
+            style={{ fontFamily: "Poppins" }}
+          >
+            ChaatGPT 🇮🇳
+          </h2>
+          <p
+            className="text-sm text-gray-600"
+            style={{ fontFamily: "Poppins" }}
+          >
             Built by{" "}
             <a href="https://twitter.com/99promitsaha">
               <span className="underline text-blue-500">99promitsaha</span>
@@ -97,7 +109,10 @@ const OpenAIComponent = () => {
         </div>
         {/* Initial message section */}
         <div className="mb-6">
-          <p className="text-sm text-gray-600">
+          <p
+            className="text-sm text-gray-600"
+            style={{ fontFamily: "Poppins" }}
+          >
             🔓 Messages are not end-to-end encrypted.
           </p>
         </div>
@@ -121,7 +136,7 @@ const OpenAIComponent = () => {
                         : "text-gray-900"
                     } dark:text-white`}
                   >
-                    {msg.role === "assistant" ? "OpenAI" : "You"}
+                    {msg.role === "assistant" ? "ChaatGPT Bhai" : "You"}
                   </span>
                   <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                     {new Date().toLocaleDateString()}{" "}
@@ -146,12 +161,12 @@ const OpenAIComponent = () => {
         </div>
 
         <form
-          className="flex justify-between items-center bg-white-200 rounded-md p-2"
+          className="flex flex-wrap items-center justify-between bg-white-200 rounded-md p-2"
           onSubmit={handleFormSubmit}
         >
           <input
             type="text"
-            className="flex-1 h-10 px-3 rounded-full border border-gray-300"
+            className="flex-1 h-10 px-3 rounded-full border border-gray-300 mb-4 md:mb-0 md:mr-2"
             placeholder="Text Message"
             value={prompt}
             onChange={handlePromptChange}
@@ -160,7 +175,7 @@ const OpenAIComponent = () => {
           />
           <button
             type="submit"
-            className={`ml-2 px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 ${
+            className={`w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 ${
               loading ? "cursor-not-allowed" : ""
             }`}
             style={{ fontFamily: "Poppins" }}

@@ -45,6 +45,9 @@ const OpenAIComponent = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    if (!prompt.trim()) {
+      return;
+    }
     handleSubmit();
     setPrompt("");
   };
@@ -60,7 +63,8 @@ const OpenAIComponent = () => {
           messages: [
             {
               role: "system",
-              content: "Please respond in a sarcastic yet informative way! Add emoji's in your answer to make it more fun!",
+              content:
+                "Please respond in a sarcastic yet informative way! Add emoji's in your answer to make it more fun!",
             },
             ...previousMessages,
             {
